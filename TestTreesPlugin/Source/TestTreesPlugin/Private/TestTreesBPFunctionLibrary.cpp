@@ -22,9 +22,9 @@ UDataTable* UTestTreesBPFunctionLibrary::ReadCSVFile(const FString& FileName)
 	}
 	const FString PluginDir = Plugin->GetBaseDir();
 	
-	//FString File =  FPaths::Combine(PluginDir, "/Binaries/ThirdParty/TestTreesPluginLibrary/Win64/TestTreeData.csv");
+	FString File =  FPaths::Combine(PluginDir, "/Binaries/ThirdParty/TestTreesPluginLibrary/Win64/TestTreeData.csv");
 
-	FString File = FPaths::Combine(PluginDir, "/Content/db/TestTreeData.csv");
+	//FString File = FPaths::Combine(PluginDir, "/Content/db/TestTreeData.csv");
 
 	if (!FPaths::FileExists(File))
 	{

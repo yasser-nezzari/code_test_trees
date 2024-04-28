@@ -37,7 +37,9 @@ public class TestTreesPlugin : ModuleRules
 			new string[]
 			{
 				// ... add private dependencies that you statically link with here ...	
-			}
+				"CoreUObject",
+				"Engine",
+            }
 			);
 		
 		

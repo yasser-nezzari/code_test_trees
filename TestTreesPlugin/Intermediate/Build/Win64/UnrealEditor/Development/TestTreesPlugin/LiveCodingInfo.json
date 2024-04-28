@@ -1,5 +1,12 @@
 {
 	"RemapUnityFiles": 
 	{
+		"Module.TestTreesPlugin.cpp.obj": [
+			"TestTreesBPFunctionLibrary.gen.cpp.obj",
+			"TestTreesDataTable.gen.cpp.obj",
+			"TestTreesPlugin.init.gen.cpp.obj",
+			"TestTreesBPFunctionLibrary.cpp.obj",
+			"TestTreesPlugin.cpp.obj"
+		]
 	}
 }

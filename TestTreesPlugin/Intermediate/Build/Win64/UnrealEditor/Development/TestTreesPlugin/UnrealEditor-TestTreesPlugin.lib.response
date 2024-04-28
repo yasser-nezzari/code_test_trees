@@ -6,7 +6,7 @@
 /NAME:"UnrealEditor-TestTreesPlugin.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"C:\Coding\GitHub\TestCode_5_1\TestTrees_5_1\Intermediate\Build\Win64\TestTrees_5_1Editor\Development\Core\SharedPCH.Core.ShadowErrors.h.obj"
-"C:\Coding\GitHub\TestCode_5_1\TestTrees_5_1\Plugins\TestTreesPlugin\Intermediate\Build\Win64\UnrealEditor\Development\TestTreesPlugin\TestTreesPlugin.cpp.obj"
+"C:\Coding\GitHub\TestCode_5_1\TestTrees_5_1\Intermediate\Build\Win64\TestTrees_5_1Editor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\Coding\GitHub\TestCode_5_1\TestTrees_5_1\Plugins\TestTreesPlugin\Intermediate\Build\Win64\UnrealEditor\Development\TestTreesPlugin\Module.TestTreesPlugin.cpp.obj"
 "C:\Coding\GitHub\TestCode_5_1\TestTrees_5_1\Plugins\TestTreesPlugin\Intermediate\Build\Win64\UnrealEditor\Development\TestTreesPlugin\Default.rc2.res"
 /OUT:"C:\Coding\GitHub\TestCode_5_1\TestTrees_5_1\Plugins\TestTreesPlugin\Intermediate\Build\Win64\UnrealEditor\Development\TestTreesPlugin\UnrealEditor-TestTreesPlugin.lib"

@@ -12,7 +12,7 @@ DEFINE_LOG_CATEGORY(TestTreesPluginLog);
 
 UDataTable* UTestTreesBPFunctionLibrary::ReadCSVFile(const FString& FileName)
 {
-
+	// Get the plugin 
 	TSharedPtr<IPlugin> Plugin = IPluginManager::Get().FindPlugin("TestTreesPlugin");
 
 	if (!Plugin.IsValid())
@@ -22,7 +22,7 @@ UDataTable* UTestTreesBPFunctionLibrary::ReadCSVFile(const FString& FileName)
 	}
 	const FString PluginDir = Plugin->GetBaseDir();
 	// Use plugin path 
-	FString File =  FPaths::Combine(PluginDir, "/Binaries/ThirdParty/TestTreesPluginLibrary/Win64/TestTreeData.csv");
+	FString File =  FPaths::Combine(PluginDir, "/Binaries/ThirdParty/TestTreesPluginLibrary/Win64/", FileName);
 
 	if (!FPaths::FileExists(File))
 	{
@@ -35,11 +35,12 @@ UDataTable* UTestTreesBPFunctionLibrary::ReadCSVFile(const FString& FileName)
 	DataTable->RowStruct = FTestTreesDataTable::StaticStruct(); // set row structure 
 	TArray<FString> CSVLines;
 	FFileHelper::LoadANSITextFileToStrings(*File, NULL, CSVLines);
-
+	// Create rows for the table 
 	FTestTreesDataTable Row; 
 	int32 ClusterDistance = 0;
 	for (int i = 1; i < CSVLines.Num(); i++)
 	{
+		// Read csv lines
 		FString aString = CSVLines[i];
 		TArray<FString> stringArray = {};
 		aString.ParseIntoArray(stringArray, TEXT(","), false);
@@ -166,6 +167,8 @@ TArray<UDataTable*> UTestTreesBPFunctionLibrary::KMeanClustering(UDataTable* Dat
 			if (Clusters.Num() > 0)
 			{
 				FVector SumPos = FVector::Zero();
+				float SumDiameter = 0;
+				float SumHeight = 0;
 				TArray <FName> ClusterRowNames = Clusters[j]->GetRowNames();
 				for (FName& ClusterName : ClusterRowNames)
 				{
@@ -179,9 +182,13 @@ TArray<UDataTable*> UTestTreesBPFunctionLibrary::KMeanClustering(UDataTable* Dat
 
 					FVector ClusterVec(ClusterRowData->X, ClusterRowData->Y, ClusterRowData->Z);
 					SumPos += ClusterVec;
+					SumDiameter += ClusterRowData->Diameter;
+					SumHeight += ClusterRowData->Height;
 				}
-
+				// Get the average values
 				FVector PosCenter = SumPos / ClusterRowNames.Num();
+				float DiameterCenter = SumDiameter/ ClusterRowNames.Num();
+				float HCenter = SumHeight/ ClusterRowNames.Num();
 
 				FName CnterRowName = DataTableUtils::MakeValidName(FString::Printf(TEXT("%d"), j + 1));
 				FTestTreesDataTable* CenterRowData = CneteroidDataTable->FindRow<FTestTreesDataTable>(*CnterRowName.ToString(), *CnterRowName.ToString(), true);
@@ -192,10 +199,13 @@ TArray<UDataTable*> UTestTreesBPFunctionLibrary::KMeanClustering(UDataTable* Dat
 					return Clusters;
 				}
 
+				// Update the clusters data
 				CenterRowData->X = PosCenter.X;
 				CenterRowData->Y = PosCenter.Y;
 				CenterRowData->Z = PosCenter.Z;
 
+				CenterRowData->Diameter = DiameterCenter;
+				CenterRowData->Height = HCenter;
 			}
 		}
 

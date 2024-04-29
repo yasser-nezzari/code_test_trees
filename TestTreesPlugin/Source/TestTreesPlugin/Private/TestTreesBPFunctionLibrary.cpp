@@ -148,7 +148,7 @@ TArray<UDataTable*> UTestTreesBPFunctionLibrary::KMeanClustering(UDataTable* Dat
 					FMath::Square(CenterRowData->Z - RowData->Z) + FMath::Square(CenterRowData->Diameter - RowData->Diameter) + 
 					FMath::Square(CenterRowData->Height - RowData->Height);
 
-				float Distance = FMath::Square(CenterRowData->Height - RowData->Height);
+				//float Distance = FMath::Square(CenterRowData->Height - RowData->Height);
 
 				Distance = FMath::Sqrt(Distance);
 

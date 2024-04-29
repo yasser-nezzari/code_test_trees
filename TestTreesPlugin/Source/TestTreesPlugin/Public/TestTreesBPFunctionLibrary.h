@@ -19,5 +19,8 @@ class TESTTREESPLUGIN_API UTestTreesBPFunctionLibrary : public UBlueprintFunctio
 
 	UFUNCTION(BlueprintCallable, Category = "TestTrees Functions")
 	static UDataTable* ReadCSVFile(const FString& Path);
-	
+
+	UFUNCTION(BlueprintCallable, Category = "TestTrees Functions")
+	static TArray<UDataTable*> KMeanClustering(UDataTable* DataTable, int K, int maxIterations);
+
 };
